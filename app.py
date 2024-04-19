@@ -108,4 +108,4 @@ def api_post_mensagem():
     
     return jsonify({}), 200
 
-app.run(debug=True),
+app.run(host="0.0.0.0", port="8080"),
