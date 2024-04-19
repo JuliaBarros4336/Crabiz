@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-image: linear-gradient(#000000, coral);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    
+}
+
+.chat-container {
+    width: 1000px;
+    height: 600px;
+    margin: 50px auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.233);
+    background-color: #fff;
+    position: relative;
+    
+}
+
+.chat-container div[id="contato_selecionado"]{
+    background-color: #e4e4e4;
+    padding: 10px;
+    border-radius: 10px;
+    width: 30%;
+    height: 50%;
+    overflow: auto;
+    overflow-x: hidden;
+    
+}
+
+.chat-container div[id="remetente"]{
+    background-color: coral;
+    padding: 10px;
+    border-radius: 10px;
+    width: 30%;
+    height: 50%;
+    color: white;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.mensagem-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 300px;
+}
+
+
+.nome_usuario{
+    width: 1000px;
+    height: 40px;
+    background-color: #e4e4e4;
+}
+
+.lista-container{
+    height: 600px;
+    width: 400px;
+    margin: 20px 20px 20px 50px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.233);
+    background-color: #fff;
+}
+
+.header {
+    background-color: #ff6347; /* Cor do cabeçalho do WhatsApp */
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 18px;
+}
+
+
+.text {
+    background-color: #e5e5ea; /* Cor de fundo da mensagem */
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.sent {
+    align-self: flex-end;
+}
+
+.input-container {
+    display: flex;
+    padding: 10px;
+    width: 100%;
+    bottom: 0px;
+    background-color: #e4e4e4;
+    position: absolute;
+    
+}
+
+.input-container input {
+    flex: 1;
+    padding: 10px;
+    border:  1px solid;
+    border-radius: 20px;
+    margin-right: 10px;
+}
+
+.input-container button {
+    background-color: #ff6347; /* Cor do botão de enviar do WhatsApp */
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-family: "Josefin Sans", sans-serif;
+}
+
+.input-container button:hover {
+    background-color: #ff4a2a; /* Cor mais escura ao pairar */
+}
+
+.contato-container{
+    max-height:570px;
+    overflow: auto;
+    overflow-x: hidden;
+    
+}
+
+.contato-container button{
+    width: 400px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    border-top: #e5e5ea solid 1px;
+    border-bottom: #e5e5ea solid 1px;
+    padding: 10px;
+    background-color: white;
+    transition-duration: 0.4s;
+   
+}
+
+.contato-container button:hover{
+    background-color: #ff634757;
+   
+}
+
+.contato-container img{
+
+    margin-right:15px ;
+    width: 30px;
+    height: auto;
+    border-radius: 50%;
+    border: #ff4a2a solid 1px;
+   
+}
+

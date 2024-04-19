@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="/static/index-cadastro.css">
+    <!-- link Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    <header>
+        <img src="/static/logotipo.jpg" alt="">
+
+        <h1>Cadastro</h1>
+
+        <h3 id="resultado"></h3>
+
+    </header>
+    <main>
+        
+            <label for="nome">Nome:</label><br>
+            <input type="text" id="nome" name="nome" required><br>
+            <label for="email">Telefone:</label><br>
+            <input type="number" id="telefone" name="telefone" required><br>
+            <label for="email">Senha:</label><br>
+            <input type="text" id="senha" name="senha" required><br>
+            <div class="cadastrar">
+                <input type="submit" value="Cadastrar">
+                <button id="bt_cadastrar" onclick="enviar_cadastro()">Cadastrar</button>
+                <a href="/login">Já esta cadastrado? Clique para logar!</a>
+            </div>
+       
+    </main>
+    <!-- <script type="text/javascript">$('bt_cadastrar').click(function())</script> -->
+    <script type="text/javascript"> 
+    function enviar_cadastro(){
+        // Coletando os dados do formulario
+        let dados_cadastro = {
+            nome: $('#nome').val(),
+            telefone: $('#telefone').val(),
+            senha: $('#senha').val(),
+        };
+
+        $.ajax({
+            url:'/cadastro_ajax',
+            type:'POST',
+            data: JSON.stringify(dados_cadastro),
+            contentType:'application/json',
+            success: function(){
+                $('#resultado').append("Cadastro Efetuado com Sucesso!")
+            },
+            error: function(){
+                $('#resultado').append("Erro no Cadastro!")
+            },
+        })
+    }
+    </script>
+   
+</body>
+</html>

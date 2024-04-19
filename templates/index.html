@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="/static/index-cadastro.css">
+</head>
+<body>
+    <header>
+        <img src="/static/logotipo-removebg-preview.png" alt="">
+        <h1>Cadastro</h1>
+    </header>
+    <main>
+        <form method="POST" action="/cadastro">
+            <label for="nome">Nome:</label><br>
+            <input type="text" id="nome" name="nome" required><br>
+            <label for="email">Telefone:</label><br>
+            <input type="text" id="telefone" name="telefone" required><br>
+            <label for="email">Senha:</label><br>
+            <input type="password" id="senha" name="senha" required><br>
+            <div class="cadastrar">
+                <input type="submit" value="Cadastrar">
+                <p>Já esta cadastrado?<a href="/login">Clique para logar!</a></p>
+            </div>
+        </form>
+    </main>
+</body>
+</html>

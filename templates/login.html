@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/static/login.css">
+</head>
+<body>
+    <header>
+        <img src="/static/logotipo-removebg-preview.png" alt="">
+        <h1>Login</h1>
+    </header>
+    <main>
+        <form method="POST" action="/login">
+            <label for="nome">Telefone:</label><br>
+            <input type="text" id="telefone" name="telefone" required><br>
+            <label for="email" >Senha:</label><br>
+            <input type="password" id="senha" name="senha" required><br>
+            <input  type="submit" value="login">
+        </form>
+    </main>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat - WhatsApp Style</title>
+    <link rel="stylesheet" href="/static/chat.css">
+    <script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1></h1>
+    <div class="lista-container">
+        <div class="header">
+            <span>Contatos</span>
+        </div>
+        <div id="lista_contato"  class="contato-container">
+            
+            <button id="btn_contato_selecionado" onclick="btn_contato_selecionado" onchange="mostraMensagem()"></button>
+            <!-- <select name="lista_contato" id="lista_contato">
+                <option value="telefone"></option>
+            </select> -->
+        
+        </div>
+    </div>
+    <section class="chat-container">
+        <div class="header">
+            <span>Crabiz</span>
+        </div>
+
+        <div class="nome_usuario">
+            <p></p>
+        </div>
+
+        <div class="mensagem-container">
+            <div class="destinatario" id="contato_selecionado">
+                <p></p>
+                
+            </div>
+            <div id="remetente">
+                <p></p>
+            </div>
+        </div>
+        
+       
+        
+        <div class="input-container">
+            <input  id="enviar_mensagem"  type="text" placeholder="Digite sua mensagem...">
+            <button onclick="enviaMensagem()">Enviar</button>
+        </div>
+    </section>
+
+    <script type="text/javascript">
+        //
+       var telefoneNumber = ""
+
+        function selecionaContato(telefone){
+            telefoneNumber = telefone;
+            mostraMensagem()
+
+        }
+
+        //função envia mensagem
+        function enviaMensagem(){
+
+            //dicionario
+            var dados = {
+                telefone: telefoneNumber,
+                mensagem: $('#enviar_mensagem').val(),}
+
+            $.ajax({
+                url:"/post/envia_mensagem",
+                type:"POST",
+                //transforma dicionario em json
+                data: JSON.stringify(dados),
+                contentType: "application/json",
+                success:function(mensagem){
+                    let tag = '<p>' + mensagem + '</p>'
+
+                    mostraMensagem()
+
+                    $('#remetente').append(tag)
+
+                   
+                },
+                error: function(){
+                    alert("Erro ao enviar mensagem!");
+                }
+            })
+        }
+
+    </script>
+
+    <script type="text/javascript">
+        function mostraUsuario(){
+
+            // Requisição via ajax
+             $.ajax({
+                url:"/get/usuarios",
+                type:"GET",
+                success: function(contatos){
+                    for(let i = 0 ;i<contatos.length;i++ ){
+
+                        let tag = '<button onclick="selecionaContato(\''+contatos[i]['telefone']+'\')">'+'<img src="https://cdn-icons-png.flaticon.com/512/266/266033.png" alt="">' +contatos[i]['nome']+' +'+contatos[i]['telefone']+'</button>'
+
+                        // let tag = '<option value"=' +contatos[i]['telefone']+'">'+contatos[i]['nome']
+
+                        //id do input para mostrar os usuarios no html
+
+                        $("#lista_contato").append(tag)
+                    }
+                }
+
+             })
+        }
+
+        $(document).ready(mostraUsuario())
+
+        function mostraMensagem(){
+            // Requisição via ajax
+            $.ajax({
+                url:"/get/mensagens",
+                type:"GET",
+                success: function(mensagem){
+                    for(let i = 0 ;i<mensagem.length;i++ ){
+
+                        let tag = '<p>'+mensagem[i]['nome']+' '+mensagem[i]['mensagem']+'</p>'
+
+                        // let tag = '<option value"=' +contatos[i]['telefone']+'">'+contatos[i]['nome']
+
+                        //id do input para mostrar os usuarios no html
+                        $("#lista_mensagem").append(tag)
+                    }
+                }
+
+             })
+        }
+
+        $(document).ready(mostraMensagem())
+
+        function mostraMensagem(){
+            $.ajax({
+                url:"/get/mensagens/" + telefoneNumber, //$("#usuario").val(),
+                type: "GET",
+                success: function(mensagens){
+                    // limpa a div que armazena as mensagens
+                    $("#remetente").empty()
+                    for(let i=0;i<mensagens.length;i++){
+                        let tag2 = "<p>"+mensagens[i]["mensagem"]+"</p>"
+                        // adiciona as mensagens na div
+                        $("#remetente").append(tag2)
+                    }
+                      
+                }
+            })
+            
+        }
+
+        setInterval(mostraMensagem,5000);
+
+    </script>
+
+</body>
+</html>
